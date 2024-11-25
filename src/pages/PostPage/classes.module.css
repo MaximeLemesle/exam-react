@@ -1,4 +1,10 @@
-.nav {
+.ul {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.link {
   padding: 8px 16px;
   border: solid 1px #007bff;
   border-radius: 5px;
@@ -7,7 +13,6 @@
   transition: background-color 0.3s;
 }
 
-.nav:hover {
-  background-color: #007bff;
-  color: white;
+.link:hover {
+  text-decoration: underline;
 }
