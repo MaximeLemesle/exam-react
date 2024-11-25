@@ -1,7 +1,7 @@
 export default function PostOwnerPage() {
   return (
     <>
-      <p>PostOwnerPage</p>
+      <h2>PostOwnerPage</h2>
     </>
   );
 }

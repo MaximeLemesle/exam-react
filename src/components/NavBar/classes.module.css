@@ -1,0 +1,11 @@
+.nav {
+  padding: 8px 16px;
+  border: solid 1px #007bff;
+  border-radius: 5px;
+  text-decoration: none;
+  height: auto;
+}
+
+.nav:hover {
+  text-decoration: underline;
+}

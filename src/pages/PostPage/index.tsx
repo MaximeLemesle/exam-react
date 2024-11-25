@@ -1,29 +1,39 @@
 import { usePostContext } from "../../contexts/PostContextProvider";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function PostPage() {
   const { post } = usePostContext();
+  const navigate = useNavigate();
 
+  // Redirection vers "detail"
+  useEffect(() => {
+    navigate("detail", { replace: true });
+  }, [navigate]);
+
+  // Si le post n'est pas encore chargé
   if (!post) {
     return <p>Chargement...</p>;
   }
 
   return (
     <div>
-      <h1>{post.title}</h1>
+      <h2>Post Page</h2>
+      <nav>
+        <ul>
+          <li>
+            <Link to="detail">Voir les détails du post</Link>
+          </li>
+          <li>
+            <Link to={`owner/${post.userId}`}>
+              Voir les informations de l'auteur
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      <h2>{post.title}</h2>
       <p>{post.body}</p>
     </div>
   );
 }
-
-// import { useNavigate } from "react-router-dom";
-// import { useEffect } from "react";
-
-// export default function PostPage() {
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     navigate("detail", { replace: true }); // Redirection vers "detail"
-//   }, [navigate]);
-
-//   return <p>Chargement...</p>;
-// }

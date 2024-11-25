@@ -1,7 +1,7 @@
 export default function PostDetailPage() {
   return (
     <>
-      <p>PostDetailPage</p>
+      <h2>PostDetailPage</h2>
     </>
   );
 }

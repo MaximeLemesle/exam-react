@@ -20,7 +20,7 @@ export default function HomePage() {
 
   return (
     <>
-      <p>HomePage</p>
+      <h2>HomePage</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <ul>
         {posts.map((post) => (
