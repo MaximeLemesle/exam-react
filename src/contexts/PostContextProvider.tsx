@@ -1,7 +1,13 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import Post from "../models/Post";
-import { fetchPost } from "../services/api/jsonplaceholder/posts";
+import React, { useState, useEffect, createContext, useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { fetchPost } from '../services/api/jsonplaceholder/posts';
+
+type Post = {
+  id: number;
+  userId: number;
+  title: string;
+  body: string;
+};
 
 type PostContextType = {
   post: Post | null;
@@ -17,25 +23,21 @@ export const usePostContext = () => {
   return context;
 };
 
-export const PostContextProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+// Typage de children
+export const PostContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [post, setPost] = useState<Post | null>(null);
-  const navigate = useNavigate();
   const { postId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadPost = async () => {
-      const id = Number(postId);
-
-      // Validation de l'ID
-      if (!Number.isInteger(id) || id <= 0) {
+      if (!Number.isInteger(Number(postId)) || Number(postId) <= 0) {
         navigate("/not-found", { replace: true });
         return;
       }
 
       try {
-        const fetchedPost = await fetchPost(id);
+        const fetchedPost = await fetchPost(Number(postId));
         setPost(fetchedPost);
       } catch (error) {
         navigate("/not-found", { replace: true });
@@ -45,7 +47,5 @@ export const PostContextProvider: React.FC<{ children: React.ReactNode }> = ({
     loadPost();
   }, [postId, navigate]);
 
-  return (
-    <PostContext.Provider value={{ post }}>{children}</PostContext.Provider>
-  );
+  return <PostContext.Provider value={{ post }}>{children}</PostContext.Provider>;
 };

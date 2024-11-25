@@ -3,9 +3,7 @@ import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import classes from "./classes.module.css";
 
-
 export default function PageTemplate() {
-
   return (
     <>
       <header className={classes.header}>
@@ -16,9 +14,7 @@ export default function PageTemplate() {
         <Outlet />
       </main>
       <footer>
-        <p>
-          <Footer />
-        </p>
+        <Footer />
       </footer>
     </>
   );

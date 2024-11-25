@@ -1,5 +1,5 @@
 import { usePostContext } from "../../contexts/PostContextProvider";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -32,8 +32,7 @@ export default function PostPage() {
           </li>
         </ul>
       </nav>
-      <h2>{post.title}</h2>
-      <p>{post.body}</p>
+      <Outlet />
     </div>
   );
 }
